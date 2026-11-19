@@ -188,7 +188,8 @@ export class Checkout {
     this.submitting.set(true);
 
     if (this.form.value.payment === 'card') {
-      this.orders.createCheckoutSession(cartId, address, window.location.origin).subscribe({
+      // Stripe sends the user to `${url}/allorders`; use the app's base URL so this works under a sub-path (GitHub Pages).
+      this.orders.createCheckoutSession(cartId, address, document.baseURI.replace(/\/$/, '')).subscribe({
         next: (url) => { window.location.href = url; },
         error: (e) => { this.toast.error(apiError(e)); this.submitting.set(false); },
       });

@@ -4,6 +4,8 @@ A complete e-commerce front end built with **Angular 20** and **Tailwind CSS v4*
 [Route e-commerce API](https://documenter.getpostman.com/view/5709532/2s93JqTRWN)
 (`https://ecommerce.routemisr.com/api/v1`).
 
+**Live site:** https://abdelrahmana2006.github.io/freshcart-ecommerce/
+
 Reference demo: https://freshcart-route.vercel.app/products
 
 ---
@@ -79,6 +81,7 @@ Open **http://localhost:4200**.
 | `npm start` | Dev server with live reload on port 4200 |
 | `npm run build` | Production build into `dist/freshcart` |
 | `npm run watch` | Development build in watch mode |
+| `npm run build:gh-pages` | Production build for GitHub Pages (base href `/freshcart-ecommerce/` + `404.html` fallback) |
 
 ---
 
@@ -140,6 +143,22 @@ src/app/
 | Wishlist | `/wishlist` | `GET/POST /wishlist`, `DELETE /wishlist/:productId` |
 | Checkout | `/checkout` | `POST /orders/:cartId` (cash), `POST /orders/checkout-session/:cartId?url=` (online) |
 | Orders | `/allorders` | `GET /orders/user/:userId` |
+
+## Deploying to GitHub Pages
+
+The site is served from the `gh-pages` branch.
+
+```bash
+npm run build:gh-pages
+```
+
+Then publish the contents of `dist/freshcart/browser` to the `gh-pages` branch, for example:
+
+```bash
+npx gh-pages -d dist/freshcart/browser --dotfiles
+```
+
+GitHub Pages has no server-side routing, so the build copies `index.html` to `404.html`. Opening or refreshing a deep link such as `/products/123` then loads the app, and Angular's router shows the right page.
 
 ## Notes
 - The API's `keyword` search parameter returns no results, so product search matches titles, brands and categories in the browser.
