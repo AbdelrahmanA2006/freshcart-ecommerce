@@ -1,0 +1,1 @@
+import{K as n}from"./chunk-NBAQH4ZK.js";var t=class e{transform(r){return`${(r??0).toLocaleString("en-US")} EGP`}static \u0275fac=function(i){return new(i||e)};static \u0275pipe=n({name:"egp",type:e,pure:!0})};export{t as a};
